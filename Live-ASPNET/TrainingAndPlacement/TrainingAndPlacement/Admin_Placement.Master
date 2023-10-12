@@ -1,0 +1,369 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin_Placement.master.cs" Inherits="TrainingAndPlacement.Admin_Placement" %>
+
+<html>
+<head id="Head1" runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TPO Panel</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <!-----------Date Calendar---------->
+    <style type="text/css">
+        .ajax__calendar {
+            width: 250px;
+            padding: 0px 10px 0px 45px;
+            border: 1px solid #CFCFCF;
+            color: #000;
+            font-size: 14px;
+            outline: none;
+            background: none;
+            margin-bottom: 1em;
+        }
+
+            .ajax__calendar iframe {
+                left: 0px !important;
+                top: 0px !important;
+            }
+    </style>
+    <style type="text/css">
+        .ajax__calendar_container {
+            z-index: 1000;
+        }
+    </style>
+    <!-----------END Date Calendar---------->
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <!-- Site wrapper -->
+    <form id="form1" runat="server" style="margin: 0;">
+        <div class="wrapper">
+
+            <header class="main-header">
+                <!-- Logo -->
+                <a class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>SVT</b></span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><b>TPO </b>Panel</span>
+                </a>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <asp:Image ID="img" class="user-image" alt="User Image" runat="server" src="img/logo.png" />
+                                    <span class="hidden-xs">
+                                        <asp:Label ID="txtname" runat="server" Text="Label"></asp:Label></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <asp:Image ID="Img1" class="img-circle" alt="User " runat="server" src="img/logo.png" />
+                                        <p>
+                                            <asp:Label ID="txtname1" runat="server" Text="Label"></asp:Label>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="row">
+                                            <div class="text-center">
+                                                <asp:LinkButton ID="Placement_back" runat="server" OnClick="Placement_back_Click">Back to Home</asp:LinkButton>
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a data-toggle="modal" data-target="#change_pswd" class="btn btn-default btn-flat">Change Password</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <asp:LinkButton ID="Placement_logout" runat="server" class="btn btn-default btn-flat" OnClick="Placement_logout_Click">Sign out</asp:LinkButton>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Control Sidebar Toggle Button -->
+                        </ul>
+                    </div>
+                </nav>
+                <asp:ContentPlaceHolder ID="head" runat="server">
+                </asp:ContentPlaceHolder>
+            </header>
+
+            <!-- =============================================== -->
+
+            <!-- Left side column. contains the sidebar -->
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <li>
+                            <a href="Admin_Home.aspx">
+                                <i class="fa fa fa-home"></i><span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Institute_Registration.aspx">
+                                <i class="fa fa fa-dashboard"></i><span>Institute Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Add_Dept.aspx">
+                                <i class="fa fa fa-dashboard"></i><span>Add Department</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-users "></i><span>Manage Staff </span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="Add_Update_Staff.aspx"><i class="fa fa-user-plus"></i>Add / Update Staff</a></li>
+                                <li><a href="TPO_Manage_Staff.aspx"><i class="fa fa-user-plus"></i>Manage Staff</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-gears"></i><span>Manage Company</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="Add_Update_Company.aspx"><i class="fa fa-user-plus"></i>Company Registration</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-gears"></i><span>Manage Drive</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="Add_update_Drive.aspx"><i class="fa fa-circle-o"></i>Create New Drive</a></li>
+                                <li><a href="Set_Drive_Criteria.aspx"><i class="fa fa-user-plus"></i>Set Drive Criteria</a></li>
+                                <li><a href="Set_Drive_Schedule.aspx"><i class="fa fa-hand-o-up"></i>Set Drive Schedule</a></li>
+                                <li><a href="Drive_Settings.aspx"><i class="fa fa-hand-o-up"></i>Drive Settings</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-users"></i><span>Manage Students</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="TPO_Add__Update_Student.aspx"><i class="fa fa-circle-o"></i>Add Students</a></li>
+                                <li><a href="Student.aspx"><i class="fa fa-circle-o"></i>Students Upload</a></li>
+                                <li><a href="Delete_Student.aspx"><i class="fa fa-circle-o"></i>Delete Students</a></li>
+                                <li><a href="TPO_Approve_Students.aspx"><i class="fa fa-hand-o-up"></i>Approve Students</a></li>
+                                <li><a href="Student_attendance.aspx"><i class="fa fa-hand-o-up"></i>Round Attendance</a></li>
+                                <li><a href="Student_Apply_Drive_Extra.aspx"><i class="fa fa-hand-o-up"></i>Student Apply Drive</a></li>
+                                <li><a href="TPO_Student_Profile.aspx"><i class="fa fa-hand-o-up"></i>Students Profile</a></li>
+                                <li><a href="Send_Notification_Student.aspx"><i class="fa fa-user-plus"></i>Manage Student</a></li>
+                                <li><a href="Eligible_Students.aspx"><i class="fa fa-hand-o-up"></i>Eligible Students</a></li>
+                                <li><a href="Forward_Students.aspx"><i class="fa fa-hand-o-up"></i>Forward Students</a></li>
+                                <li><a href="TPO_Registered_Students.aspx"><i class="fa fa-hand-o-up"></i>Registered Student</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="Send_Notification.aspx">
+                                <i class="fa fa-clipboard"></i><span>Notification Task</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-user-plus "></i><span>User Access</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="Login_Details.aspx"><i class="fa fa-hand-o-up"></i>Student Login Details</a></li>
+                                <li><a href="Staff_Login_Details.aspx"><i class="fa fa-hand-o-up"></i>Staff Login Details</a></li>
+                                <%--<li><a href="add_Student.aspx"><i class="fa fa-hand-o-up"></i>Coordinator Panel</a></li>--%>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-list-alt"></i><span>All Reports</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="#"><i class="fa fa-newspaper-o"></i>Company Reports
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="rptCompany_Registration.aspx"><i class="fa fa-hand-o-up"></i>Company Registration List</a></li>
+                                        <li><a href="rptCompany_Drive.aspx"><i class="fa fa-inr"></i>Company Wise Drive List</a></li>
+                                        <li><a href="rptYear_Wise_Drive_List.aspx"><i class="fa fa-inr"></i>Year Wise Drive List</a></li>
+                                        <li><a href="rptCompany_Wise_List.aspx"><i class="fa fa-user-times"></i>Company Wise Students List</a></li>
+                                        <li><a href="rptEligible_Students.aspx"><i class="fa fa-user-times"></i>Drive Wise Eligible Students</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-newspaper-o"></i>Student Reports
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="rptStudent_Registration_list.aspx"><i class="fa fa-hand-o-up"></i>Registration List</a></li>
+                                        <li><a href="rptStudent_Apply_Drive.aspx"><i class="fa fa-user-times"></i>Student Apply Drive</a></li>
+                                        <li><a href="rptStudent_Round_Attendance.aspx"><i class="fa fa-hand-o-up"></i>Student Round Attendance</a></li>
+                                        <li><a href="rptStudent_Place_Unplace_list.aspx"><i class="fa fa-user-times"></i>All Place Unplace List</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-pie-chart"></i>Charts Reports
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="rptYear_Wise_Chart.aspx"><i class="fa fa-pie-chart"></i>Year Wise Report</a></li>
+                                        <li><a href="rptCompany_Wise_Chart.aspx"><i class="fa fa-pie-chart"></i>Company Wise Report</a></li>
+                                        <li><a href="rptDrive_Wise_Chart.aspx"><i class="fa fa-pie-chart"></i>Drive Wise Report</a></li>
+                                        <%--<li><a href="rptYear_Dirve_Wise_Chart.aspx"><i class="fa fa-pie-chart"></i>Year & Drive Wise Report</a></li>--%>
+                                        <li><a href="rptDepartment_Wise_Chart.aspx"><i class="fa fa-pie-chart"></i>Department Wise Report</a></li>
+                                        <%--<li><a href="rptYear_Department_Wise_Chart.aspx"><i class="fa fa-pie-chart"></i>Year & Department Wise Report</a></li>--%>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- =============================================== -->
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.3.8
+                </div>
+                <%--<strong>Copyright &copy; 2017-2018 <a href="http://squarevisiontech.com">Square vision technology</a>.</strong> All rights reserved.--%>
+            </footer>
+
+
+            <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- SlimScroll -->
+        <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="plugins/fastclick/fastclick.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/app.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="dist/js/demo.js"></script>
+
+        <div class="modal fade" id="change_pswd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        Chenge Password
+                    </div>
+                    <div class="panel-body" align="center">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>Old Password :</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox class="form-control" ID="txtold_pwd" runat="server" placeholder="Enter Old Password *" TextMode="Password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>New Password :</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox class="form-control" ID="txtpwd" runat="server" placeholder="Enter New Password *" TextMode="Password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>Re-Enter Password :</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox class="form-control" ID="txtre_pwd" runat="server" placeholder="Re-Enter Password *" TextMode="Password" />
+                                    <asp:CompareValidator ID="CompareValidator1" ErrorMessage="Passwords do not match." ForeColor="Red" ControlToCompare="txtpwd" ControlToValidate="txtre_pwd" runat="server" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6" align="right">
+                                    <asp:Label ID="txterror" runat="server" ForeColor="Red" Font-Bold="True" />
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:Button ID="btnpswd" runat="server" Text="Change Password" class="btn btn-danger" OnClick="btnpswd_Click" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
